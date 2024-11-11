@@ -34,17 +34,24 @@ function Home() {
 
   // Graph Data
   const graphData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%'] ,
     datasets: [
-      {
-        label: 'Spam Emails Detected',
-        data: [20, 35, 50, 45, 60, 70], // Example data
-        borderColor: '#ff6347', // Line color
-        backgroundColor: 'rgba(255, 99, 71, 0.2)', // Background color
-        tension: 0.1,
-      },
+        {
+            label: 'Training Accuracy',
+            data: [100.0, 99.76, 99.52, 99.34, 99.43, 99.4, 99.28, 99.25, 99.34] ,
+            borderColor: '#4287f5',
+            backgroundColor: 'rgba(66, 135, 245, 0.2)',
+            tension: 0.1,
+        },
+        {
+            label: 'Testing Accuracy',
+            data: [96.12, 97.7, 98.13, 98.35, 98.56, 98.64, 98.64, 98.71, 98.85] ,
+            borderColor: '#ff6347',
+            backgroundColor: 'rgba(255, 99, 71, 0.2)',
+            tension: 0.1,
+        },
     ],
-  };
+};
 
   const graphOptions = {
     responsive: true,
@@ -162,15 +169,6 @@ function Home() {
               <li className='text-lg text-gray-300' data-aos='fade-up' data-aos-delay='1200'>
                 <strong>Category:</strong> The label for the email, which is either "ham" (non-spam) or "spam" (unwanted). This column serves as the target variable for the model.
               </li>
-              <li className='text-lg text-gray-300' data-aos='fade-up' data-aos-delay='1400'>
-                <strong>Subject:</strong> The subject of the email, which is another important feature for classification.
-              </li>
-              <li className='text-lg text-gray-300' data-aos='fade-up' data-aos-delay='1600'>
-                <strong>Sender:</strong> The sender of the email. Often used to identify whether the sender is trustworthy or if they are part of known spam domains.
-              </li>
-              <li className='text-lg text-gray-300' data-aos='fade-up' data-aos-delay='1800'>
-                <strong>Timestamp:</strong> The date and time when the email was received. Certain spam emails may have distinct timestamp patterns.
-              </li>
             </ul>
           </div>
 
@@ -205,7 +203,7 @@ function Home() {
           </h2>
 
           {/* Graph Component */}
-          <div className='w-full max-w-3xl' data-aos='zoom-in' data-aos-delay='200'>
+          <div className='w-full ml-60 max-w-3xl' data-aos='zoom-in' data-aos-delay='200'>
             <Line data={graphData} options={graphOptions} />
           </div>
 

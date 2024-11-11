@@ -24,5 +24,5 @@ y_pred = clf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f'Accuracy: {accuracy * 100:.2f}%')
 
-model_filename = 'spam_detection_model.pkl'
+model_filename = 'spam_detection_modell.pkl'
 joblib.dump(clf, model_filename)

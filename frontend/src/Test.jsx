@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaRobot } from 'react-icons/fa';
-import Lottie  from 'lottie-react';
+import Lottie from 'lottie-react';
 import animationData from './assets/mail.json'; // Adjust path as needed
 
 function Test() {
@@ -9,6 +9,7 @@ function Test() {
   const [response, setResponse] = useState(''); // To store the backend response
   const [showResponse, setShowResponse] = useState(false); // To control when to show the response
   const [dipemail, setDipemail] = useState('Enter email text ...'); // To store the email text for display
+  const [loading, setLoading] = useState(false); // To track loading state
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -16,35 +17,41 @@ function Test() {
     setDipemail(emailText); // Update the email text for display
     setEmailText(''); // Clear the text area after submission
 
+    setLoading(true); // Set loading state to true when starting the request
     try {
       const res = await axios.post('http://localhost:5000/predict', { emails: [emailText] });
+      // Fixed the URL to match backend route
       setResponse(res.data.predictions[0]);
       setShowResponse(true);
     } catch (error) {
       console.error('There was an error!', error);
       setResponse('An error occurred. Please try again.');
       setShowResponse(true); // Show error message if there's an issue
+    } finally {
+      setLoading(false); // Set loading state back to false after request finishes
     }
   };
 
   return (
-    <div className='bg-black h-screen text-white flex flex-col'>
+    <div className='bg-gradient-to-r from-black via-gray-900 to-gray-800 text-white h-screen flex flex-col'>
       <div className='h-16 flex justify-between items-center p-5'>
         <p className='font-semibold text-lg font-mono'>Spam Detection</p>
-        <a href='/'><svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth='1.5'
-          stroke='currentColor'
-          className='w-7 h-7'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'
-          />
-        </svg></a>
+        <a href='/'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth='1.5'
+            stroke='currentColor'
+            className='w-7 h-7'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'
+            />
+          </svg>
+        </a>
       </div>
       <div className='h-0.5 bg-lime-300'></div>
       <div className='flex-grow flex flex-col ml-28 mt-20'>
@@ -61,8 +68,9 @@ function Test() {
           <button
             type='submit'
             className='border-2 rounded-lg border-neutral-600 w-40 h-8 hover:bg-rose-600 transition duration-300 hover:shadow-red-300 hover:shadow-sm text-white font-semibold'
+            disabled={loading} // Disable the button while loading
           >
-            Classify
+            {loading ? 'Classifying...' : 'Classify'} {/* Show loading text while waiting */}
           </button>
         </form>
 
@@ -75,18 +83,6 @@ function Test() {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Lottie animation on the right side, centered vertically */}
-      <div className='absolute top-1/2 right-8 transform -translate-y-1/2'>
-        {/* <Lottie animationData={animationData} loop={true} autoplay={true} 
-                    style={{
-                      width: '50%',
-                      height: '50%',
-                      objectFit: 'cover',
-                      right:300
-                    }}
-                     /> */}
       </div>
     </div>
   );
