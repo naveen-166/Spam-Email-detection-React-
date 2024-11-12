@@ -6,6 +6,7 @@ import { Line } from 'react-chartjs-2';
 import Lottie  from 'lottie-react';
 import animationData from './assets/mail.json';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import Test from './Test';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -90,7 +91,7 @@ function Home() {
               </a>
             </li>
             <li>
-              <a href='/test' className='text-white hover:text-gray-400'>
+              <a href='#section-4' className='text-white hover:text-gray-400'>
                 Test Model
               </a>
             </li>
@@ -266,6 +267,10 @@ function Home() {
               In the future, we plan to test the model with larger datasets, implement real-time spam filtering, and experiment with cutting-edge algorithms to make email systems even more efficient and secure.
             </p>
           </div>
+        </div>
+        <div id='section-4'>
+          <Test/>
+
         </div>
       </div>
     </div>

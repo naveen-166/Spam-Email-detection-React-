@@ -5,10 +5,9 @@ import Test from './Test';
 
 function App() {
   return (
-    <Router>  {/* Wrapping the entire app with Router */}
-      <Routes>  {/* Define all your routes inside Routes */}
+    <Router>  
+      <Routes>  
         <Route path="/" element={<Home />} />  {/* Home route */}
-        <Route path="/test" element={<Test />} />  {/* Test route */}
       </Routes>
     </Router>
   );
