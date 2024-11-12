@@ -30,7 +30,7 @@ function Test() {
 
     setLoading(true); // Set loading state to true when starting the request
     try {
-      const res = await axios.post('http://localhost:5000/predict', { emails: [emailText] });
+      const res = await axios.post('https://spam-email-detection-react-1.onrender.com/predict', { emails: [emailText] });
       // Fixed the URL to match backend route
       setResponse(res.data.predictions[0]);
       setShowResponse(true);
