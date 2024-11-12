@@ -18,7 +18,7 @@ function Home() {
     AOS.init({ duration: 500 });
 
     // Importing CSV as an asset URL
-    const csvUrl = '/src/assets/spam.csv';  // The URL of the imported CSV file
+    const csvUrl = '/assets/spam.csv';  // Correct path for production
 
     // Fetch and parse the CSV file
     fetch(csvUrl)
