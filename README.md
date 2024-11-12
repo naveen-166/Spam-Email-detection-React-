@@ -63,7 +63,7 @@ cd spam-email-detection
    npm run dev
    ```
 
-   The frontend will be accessible at [http://localhost:3000](http://localhost:3000).
+   The frontend will be accessible at [http://localhost:5173](http://localhost:5173).
 
 ### Backend Setup
 
@@ -93,7 +93,7 @@ Ensure the frontend and backend are configured to communicate. Update the API en
 ## Deployed Application
 
 You can access the live deployed application here:  
-[**Spam Email Detection App**](https://your-deployed-link.com)
+[**Spam Email Detection App**](https://spam-email-detection-react-2.onrender.com/)
 
 ## How It Works
 
